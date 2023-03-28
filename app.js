@@ -6,10 +6,13 @@ import userRouter from './routes/user-route';
 dotenv.config();
 const app = express();
 
+//middleware
+app.use(express.json());
 
 app.use('/user', userRouter);
 
-mongoose.connect(`mongodb+srv://kenneth:${process.env.MONGODB_PASSWORD}@cluster0.uzm9gij.mongodb.net/?retryWrites=true&w=majority`)
+
+mongoose.connect(`mongodb://127.0.0.1:27017/capstoneDB`)
 .then(()=>{
     app.listen(5000, ()=>{
         console.log("Listening to 5000!");
@@ -19,8 +22,8 @@ mongoose.connect(`mongodb+srv://kenneth:${process.env.MONGODB_PASSWORD}@cluster0
     console.log(e);
 })
 
-app.use('/', (req, res, next)=>{
-    res.send('Hello');
-});
+// app.use('/', (req, res, next)=>{
+//     res.send('Hello');
+// });
 
 
